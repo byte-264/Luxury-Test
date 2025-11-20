@@ -13,7 +13,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onLoginClick }) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Use a slightly higher threshold to prevent accidental triggers
       setIsScrolled(window.scrollY > 20);
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -36,9 +35,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onLoginClick }) => {
     { name: 'Contacto', href: '#footer' },
   ];
 
-  // --- FLUID TRANSITION STYLES ---
-  // Faster duration (300ms) and ease-out for an "agile" feel.
-  const transitionClass = "transition-all duration-300 ease-out";
+  // Optimized transition for layout stability
+  const transitionClass = "transition-all duration-500 cubic-bezier(0.4, 0, 0.2, 1)";
 
   return (
     <>
@@ -47,19 +45,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onLoginClick }) => {
           isScrolled ? 'top-4' : 'top-0'
         }`}
       >
-        {/* 
-           The Container:
-           - Scrolled: Wider max-width (7xl) on desktop to prevent massive layout jumps.
-           - Consistent vertical padding adjustment.
-        */}
         <div
-          className={`${transitionClass} flex items-center justify-between ${
+          className={`${transitionClass} flex items-center justify-between mx-auto transform-gpu ${
             isScrolled
-              ? 'w-[94%] lg:w-[92%] max-w-7xl bg-brand-black/90 backdrop-blur-xl rounded-full border border-white/10 shadow-2xl py-2.5 px-6 md:px-8'
-              : 'w-full bg-transparent border-transparent py-6 px-6 lg:px-12'
+              ? 'w-[94%] lg:w-[90%] max-w-7xl bg-brand-black/90 backdrop-blur-xl rounded-full border border-white/10 shadow-2xl py-3 px-6 md:px-8'
+              : 'w-full max-w-[100vw] bg-transparent border-transparent py-6 px-6 lg:px-12'
           }`}
         >
-          {/* Logo - Subtle & Modern */}
+          {/* Logo */}
           <div className="flex items-center gap-2 z-50">
             <div className={`flex flex-col leading-none ${transitionClass}`}>
               <span className="text-xl md:text-2xl font-bold tracking-tighter text-white">
@@ -95,7 +88,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onLoginClick }) => {
               <span className="text-xs font-bold uppercase tracking-wider">Acceder</span>
             </button>
 
-            {/* Button remains stable in size to avoid layout thrashing during scroll */}
             <Button
               variant="outline"
               size="sm"
@@ -116,16 +108,15 @@ export const Navbar: React.FC<NavbarProps> = ({ onLoginClick }) => {
         </div>
       </nav>
 
-      {/* Mobile Menu Overlay - Optimized Animation */}
+      {/* Mobile Menu Overlay */}
       <div
         className="fixed inset-0 z-[60] bg-white flex flex-col"
         style={{
           clipPath: isMobileMenuOpen ? 'circle(150% at 100% 0)' : 'circle(0% at 100% 0)',
-          transition: 'clip-path 0.7s cubic-bezier(0.16, 1, 0.3, 1)', // Silky smooth easing
+          transition: 'clip-path 0.7s cubic-bezier(0.16, 1, 0.3, 1)',
           pointerEvents: isMobileMenuOpen ? 'auto' : 'none',
         }}
       >
-        {/* Header inside menu */}
         <div className="flex justify-between items-center p-6 md:p-8">
             <span className="text-2xl font-bold tracking-tighter text-brand-black">
                 LUX<span className="font-serif italic font-light">RIDE</span>
@@ -138,7 +129,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onLoginClick }) => {
             </button>
         </div>
 
-        {/* Links Container */}
         <div className="flex-grow flex flex-col justify-center items-center gap-6 w-full px-6">
           {navLinks.map((link, index) => (
             <a
@@ -156,7 +146,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onLoginClick }) => {
             </a>
           ))}
 
-          {/* Prominent Mobile Login Button */}
+          {/* Mobile Login Button */}
           <div 
             className={`w-full max-w-xs mt-8 transition-all duration-700 ease-out ${
                 isMobileMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
@@ -176,7 +166,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onLoginClick }) => {
           </div>
         </div>
 
-        {/* Footer inside menu */}
         <div className="p-8 text-center border-t border-gray-100">
             <p className="text-gray-400 text-xs font-bold uppercase tracking-widest mb-2">Contacto</p>
             <a href="mailto:hola@luxride.mx" className="text-xl font-serif italic text-brand-black">hola@luxride.mx</a>

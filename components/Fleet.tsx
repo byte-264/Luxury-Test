@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Vehicle } from '../types';
-import { Users, Briefcase, ArrowRight, Fuel, Gauge, Star } from 'lucide-react';
+import { Users, Briefcase, ArrowRight, Fuel, Gauge, Star, Sparkles } from 'lucide-react';
 
 const fleetData: Vehicle[] = [
   {
@@ -119,88 +119,74 @@ export const Fleet: React.FC = () => {
         {/* Modern Grid Layout */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
           {visibleFleet.map((car) => (
-            <div key={car.id} className="group flex flex-col bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 shadow-sm hover:shadow-2xl transition-all duration-500 ease-out hover:-translate-y-1">
+            <div key={car.id} className="group flex flex-col bg-white rounded-[2rem] overflow-hidden border border-gray-100 shadow-sm hover:shadow-2xl transition-all duration-500 ease-out hover:-translate-y-2">
               
-              {/* Image Section */}
-              <div className="relative h-64 overflow-hidden">
-                  {/* Subtle background for image area */}
-                  <div className="absolute inset-0 bg-gradient-to-b from-gray-50 to-white"></div>
+              {/* Image Section - Clean & Cinematic */}
+              <div className="relative h-72 overflow-hidden bg-gray-50">
                   <div className="absolute top-5 left-5 z-10">
-                      <span className="px-4 py-1.5 bg-white/95 backdrop-blur text-xs font-bold uppercase tracking-widest rounded-full text-brand-black border border-gray-100 shadow-sm">
+                      <span className="px-4 py-1.5 bg-white/90 backdrop-blur-md text-xs font-bold uppercase tracking-widest rounded-full text-brand-black shadow-sm">
                           {car.category}
+                      </span>
+                  </div>
+                  {/* Premium Tag on Hover */}
+                  <div className="absolute top-5 right-5 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-2 group-hover:translate-y-0">
+                      <span className="flex items-center gap-1.5 px-3 py-1.5 bg-brand-black text-white text-[10px] font-bold uppercase tracking-widest rounded-full shadow-lg">
+                          <Sparkles size={12} className="text-accent-500" /> Premium
                       </span>
                   </div>
                   <img 
                       src={car.image} 
                       alt={car.name} 
-                      className="relative w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out mix-blend-multiply"
+                      className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </div>
 
               {/* Content Section */}
-              <div className="px-8 pb-8 pt-4 flex flex-col gap-6 flex-grow">
+              <div className="p-8 flex flex-col gap-6 flex-grow relative">
                   
-                  {/* Title & Price Header */}
-                  <div className="flex flex-col gap-1">
-                       <div className="flex justify-between items-start gap-4">
-                          <h4 className="font-serif text-2xl lg:text-3xl text-brand-black leading-tight">{car.name}</h4>
-                          <div className="text-right shrink-0">
-                            <span className="text-2xl font-bold text-brand-black tracking-tight">${car.pricePerDay}</span>
-                            <span className="block text-[10px] text-gray-400 font-bold uppercase tracking-widest">/ Día</span>
-                          </div>
+                  {/* Title & Price */}
+                  <div>
+                       <div className="flex justify-between items-start gap-4 mb-2">
+                          <h4 className="font-serif text-3xl text-brand-black leading-none group-hover:text-accent-600 transition-colors duration-300">{car.name}</h4>
                        </div>
-                       
-                       {/* Premium Badge */}
-                       <div className="flex items-center gap-1.5">
-                            <Star size={14} className="text-accent-500 fill-accent-500"/>
-                            <span className="text-xs text-gray-400 font-bold tracking-wide">Premium Class</span>
+                       <div className="flex items-baseline gap-2">
+                            <span className="text-2xl font-bold text-brand-black tracking-tight">${car.pricePerDay}</span>
+                            <span className="text-xs text-gray-400 font-bold uppercase tracking-widest">/ Día</span>
                        </div>
                   </div>
 
-                  {/* Specs Block - Refined Layout */}
-                  <div className="bg-brand-light rounded-2xl p-5 grid grid-cols-2 gap-x-2 gap-y-6 border border-gray-100/50 mt-auto">
-                      <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-gray-400 shrink-0 shadow-sm border border-gray-50">
-                            <Users size={16} />
-                          </div>
-                          <div className="flex flex-col">
-                              <span className="text-[10px] text-gray-400 font-bold uppercase tracking-wider leading-none mb-1">Pasajeros</span>
-                              <span className="text-sm font-bold text-brand-black leading-none">{car.passengers}</span>
-                          </div>
+                  {/* Specs - Clean Row Layout with Dividers */}
+                  <div className="flex items-center justify-between py-6 border-t border-gray-100 border-b border-gray-100">
+                      <div className="flex flex-col items-center gap-2 px-2 flex-1">
+                          <Users size={20} className="text-gray-400 stroke-1.5" />
+                          <span className="text-sm font-bold text-brand-black text-center">{car.passengers} Pax</span>
                       </div>
-                      <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-gray-400 shrink-0 shadow-sm border border-gray-50">
-                            <Briefcase size={16} />
-                          </div>
-                          <div className="flex flex-col">
-                              <span className="text-[10px] text-gray-400 font-bold uppercase tracking-wider leading-none mb-1">Equipaje</span>
-                              <span className="text-sm font-bold text-brand-black leading-none">{car.luggage}</span>
-                          </div>
+                      <div className="w-[1px] h-8 bg-gray-100"></div>
+                      <div className="flex flex-col items-center gap-2 px-2 flex-1">
+                          <Briefcase size={20} className="text-gray-400 stroke-1.5" />
+                          <span className="text-sm font-bold text-brand-black text-center">{car.luggage} Maletas</span>
                       </div>
-                      <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-gray-400 shrink-0 shadow-sm border border-gray-50">
-                            <Gauge size={16} />
-                          </div>
-                          <div className="flex flex-col">
-                              <span className="text-[10px] text-gray-400 font-bold uppercase tracking-wider leading-none mb-1">Transmisión</span>
-                              <span className="text-sm font-bold text-brand-black leading-none">{car.features[0]}</span>
-                          </div>
-                      </div>
-                       <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-gray-400 shrink-0 shadow-sm border border-gray-50">
-                            <Fuel size={16} />
-                          </div>
-                          <div className="flex flex-col">
-                              <span className="text-[10px] text-gray-400 font-bold uppercase tracking-wider leading-none mb-1">Combustible</span>
-                              <span className="text-sm font-bold text-brand-black leading-none">{car.features[1]}</span>
-                          </div>
+                      <div className="w-[1px] h-8 bg-gray-100"></div>
+                      <div className="flex flex-col items-center gap-2 px-2 flex-1">
+                          <Gauge size={20} className="text-gray-400 stroke-1.5" />
+                          <span className="text-sm font-bold text-brand-black text-center">Auto</span>
                       </div>
                   </div>
+                  
+                  {/* Features Tags */}
+                   <div className="flex flex-wrap gap-2 justify-center">
+                        {car.features.map((feature, i) => (
+                            <span key={i} className="text-[10px] font-bold uppercase tracking-wider text-gray-400 bg-gray-50 px-2.5 py-1 rounded-md">
+                                {feature}
+                            </span>
+                        ))}
+                   </div>
 
                   {/* Action Button */}
-                  <button className="w-full py-4 bg-brand-black text-white text-sm font-bold uppercase tracking-[0.15em] rounded-xl hover:bg-accent-600 shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 group/btn">
-                      Reservar Ahora
-                      <ArrowRight size={18} className="group-hover/btn:translate-x-1 transition-transform" />
+                  <button className="mt-auto w-full py-4 bg-brand-black text-white text-sm font-bold uppercase tracking-[0.15em] rounded-xl hover:bg-accent-600 shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 group/btn">
+                      Reservar
+                      <ArrowRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />
                   </button>
 
               </div>
