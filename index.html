@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LuxRide Cancún | Traslados Premium al Aeropuerto</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Manrope', 'sans-serif'],
+              serif: ['Playfair Display', 'serif'],
+            },
+            colors: {
+              brand: {
+                black: '#121212', // Deep Charcoal Black (Softer than #000)
+                dark: '#1F1F1F',  // Graphite
+                gray: '#6B7280',  // Elegant Neutral Gray
+                light: '#FAFAF9', // Warm Alabaster/Ivory (Soft Neutral)
+                white: '#FFFFFF',
+              },
+              accent: {
+                400: '#E5D4BC', // Champagne
+                500: '#C4A676', // Metallic Bronze (Refined, Matte)
+                600: '#9C8458', // Dark Bronze
+              }
+            },
+            boxShadow: {
+              'soft': '0 20px 40px -15px rgba(0, 0, 0, 0.05)',
+              'glow': '0 0 25px rgba(196, 166, 118, 0.2)',
+              'floating': '0 30px 60px -10px rgba(18, 18, 18, 0.08)',
+            },
+            animation: {
+              'fade-in-up': 'fadeInUp 1s cubic-bezier(0.2, 0, 0.2, 1) forwards',
+              'fade-in-up-delay': 'fadeInUp 1s cubic-bezier(0.2, 0, 0.2, 1) 0.3s forwards',
+            },
+            keyframes: {
+              fadeInUp: {
+                '0%': { opacity: '0', transform: 'translateY(30px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      /* Smooth scrolling */
+      html {
+        scroll-behavior: smooth;
+      }
+      /* Custom scrollbar for a premium feel */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #FAFAF9;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #D4D4D8;
+        border-radius: 3px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #C4A676;
+      }
+      
+      .glass-bar {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+      }
+      
+      input[type="date"]::-webkit-calendar-picker-indicator,
+      input[type="time"]::-webkit-calendar-picker-indicator {
+        cursor: pointer;
+        opacity: 0.5;
+        filter: invert(0);
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "swiper": "https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.mjs"
+  }
+}
+</script>
+</head>
+  <body class="bg-brand-light text-brand-black antialiased">
+    <div id="root"></div>
+  </body>
+</html>
